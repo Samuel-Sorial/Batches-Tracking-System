@@ -1,10 +1,13 @@
+// Importing express to make it easier to annotate request, response, next
+// eslint-disable-next-line no-unused-vars
+const express = require('express');
 const Batch = require('../models/batch');
 const logger = require('../utils/logger');
 /**
  * Creates a new batch if the given data is valid
- * @param {import('express').Request} request
- * @param {import('express').Response} response
- * @param {import('express').NextFunction} next
+ * @param {express.Request} request
+ * @param {express.Response} response
+ * @param {express.NextFunction} next
  */
 module.exports.createBatch = async (request, response, next) => {
   Batch.newBatch({ ...request.body })
@@ -17,9 +20,9 @@ module.exports.createBatch = async (request, response, next) => {
 
 /**
  * Finds batches or group them if asked in the query
- * @param {import('express').Request} request
- * @param {import('express').Response} response
- * @param {import('express').NextFunction} next
+ * @param {express.Request} request
+ * @param {express.Response} response
+ * @param {express.NextFunction} next
  */
 module.exports.findBatches = async (request, response, next) => {
   // Return all the data

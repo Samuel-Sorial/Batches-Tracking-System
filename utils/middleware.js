@@ -1,12 +1,15 @@
+// Importing express to make it easier to annotate request, response, next
+// eslint-disable-next-line no-unused-vars
+const express = require('express');
 const logger = require('./logger');
 
 /**
  * Loggs each coming request
  * @module requestLogger
  * @function
- * @param {import('express').Request} request
- * @param {import('express').Response} response
- * @param {import('express').NextFunction} next
+ * @param {express.Request} request
+ * @param {express.Response} response
+ * @param {express.NextFunction} next
  */
 const requestLogger = (request, response, next) => {
   logger.info('Method: ', request.method);
@@ -22,9 +25,9 @@ const requestLogger = (request, response, next) => {
  * Handles not found endpoint
  * @module notFound
  * @function
- * @param {import('express').Request} request
- * @param {import('express').Response} response
- * @param {import('express').NextFunction} next
+ * @param {express.Request} request
+ * @param {express.Response} response
+ * @param {express.NextFunction} next
  */
 const notFound = (request, response) => {
   response.status(404).send({ error: 'unknown endpoint' });
@@ -35,9 +38,9 @@ const notFound = (request, response) => {
  * @module errorHandler
  * @function
  * @param {Error} error
- * @param {import('express').Request} request
- * @param {import('express').Response} response
- * @param {import('express').NextFunction} next
+ * @param {express.Request} request
+ * @param {express.Response} response
+ * @param {express.NextFunction} next
  */
 const errorHandler = (error, request, response, next) => {
   logger.error(error.message);
