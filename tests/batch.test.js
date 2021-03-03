@@ -11,6 +11,11 @@ const completeData = {
   color: 'red',
   quantity: 50,
 };
+const invalidData = {
+  size: 'invalid size',
+  color: 'red',
+  quantity: 50,
+};
 
 beforeAll(async () => {
   await Sequence.deleteMany({});
@@ -26,6 +31,10 @@ describe('create batch', () => {
     expect(body.size).toBe(completeData.size);
     expect(body.color).toBe(completeData.color);
     expect(body.quantity).toBe(completeData.quantity);
+  });
+  test('failes with invalid data', async () => {
+    const { status } = await api.post('/api/batches').send(invalidData);
+    expect(status).toBe(400);
   });
 });
 

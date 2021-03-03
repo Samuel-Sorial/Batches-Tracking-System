@@ -13,6 +13,8 @@ logger.info('Connecting to MongoDB using:', config.MONGODB_URI);
 const mongooseConnection = mongoose.connect(config.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
 });
 
 // Attaching middlewares to the application

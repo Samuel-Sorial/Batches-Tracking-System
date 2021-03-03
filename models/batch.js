@@ -11,8 +11,8 @@ const batchSchema = new mongoose.Schema({
     enum: ['red', 'blue', 'black', 'green'],
     required: true,
   },
-  quantity: { type: Number, min: 1, index: 1 },
-  number: { type: Number, min: 1, index: 1 },
+  quantity: { type: Number, required: true, min: 1, index: 1 },
+  number: { type: Number, required: true, min: 1, index: 1 },
 });
 
 /**
@@ -33,5 +33,13 @@ batchSchema.statics.newBatch = async function (batch) {
   const nextNumber = await getNumber();
   return new this({ ...batch, number: nextNumber });
 };
+
+batchSchema.set('toJSON', {
+  transform: (document, returnedObject) => {
+    returnedObject.id = returnedObject._id.toString();
+    delete returnedObject._id;
+    delete returnedObject.__v;
+  },
+});
 
 module.exports = mongoose.model('Batch', batchSchema);
