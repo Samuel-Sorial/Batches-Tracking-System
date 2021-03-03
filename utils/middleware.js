@@ -45,9 +45,10 @@ const notFound = (request, response) => {
 const errorHandler = (error, request, response, next) => {
   logger.error(error.message);
   if (error instanceof TypeError) {
-    return response.status(400).json({ error: error.message });
+    response.status(400).json({ error: error.message });
+  } else {
+    next(error);
   }
-  next(error);
 };
 
 module.exports = { requestLogger, notFound, errorHandler };
