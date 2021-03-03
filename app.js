@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const config = require('./utils/config');
 const logger = require('./utils/logger');
 const middleware = require('./utils/middleware');
@@ -15,6 +16,7 @@ const mongooseConnection = mongoose.connect(config.MONGODB_URI, {
 });
 
 // Attaching middlewares to the application
+app.use(cors());
 app.use(express.json());
 if (process.env.NODE_ENV === 'development') {
   app.use(middleware.requestLogger);
