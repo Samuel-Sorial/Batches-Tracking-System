@@ -1,5 +1,5 @@
 const Batch = require('../models/batch');
-
+const logger = require('../utils/logger');
 /**
  * Creates a new batch if the given data is valid
  * @param {import('express').Request} request
@@ -22,5 +22,8 @@ module.exports.createBatch = async (request, response, next) => {
 module.exports.findAllBatches = async (request, response, next) => {
   Batch.find({})
     .then((batches) => response.send(batches))
-    .catch(() => next(new Error()));
+    .catch((error) => {
+      logger.error(error);
+      next(new Error());
+    });
 };

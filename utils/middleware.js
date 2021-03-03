@@ -44,7 +44,6 @@ const errorHandler = (error, request, response, next) => {
   if (error instanceof TypeError) {
     return response.status(400).json({ error: error.message });
   }
-
   next(error);
 };
 

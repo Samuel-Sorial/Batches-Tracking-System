@@ -1,0 +1,18 @@
+{
+  "completeData": {
+    "size": "M",
+    "color": "red",
+    "quantity": 50
+  },
+  "invalidData": {
+    "size": "invalid size",
+    "color": "blue",
+    "quantity": 20
+  },
+  "incompleteData": {
+    "size": "M",
+    "quantity": 5
+  },
+  "validSizes": ["S", "M", "L", "XL"],
+  "validColors": ["red", "blue", "black", "green"]
+}

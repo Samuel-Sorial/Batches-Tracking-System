@@ -3,19 +3,10 @@ const supertest = require('supertest');
 const Batch = require('../models/batch');
 const Sequence = require('../models/sequence');
 const { app } = require('../app');
+const { completeData, invalidData } = require('./helper/DataSamples.json');
+const { addBatches } = require('./helper/functions');
 
 const api = supertest(app);
-
-const completeData = {
-  size: 'M',
-  color: 'red',
-  quantity: 50,
-};
-const invalidData = {
-  size: 'invalid size',
-  color: 'red',
-  quantity: 50,
-};
 
 beforeAll(async () => {
   await Sequence.deleteMany({});
@@ -35,6 +26,16 @@ describe('create batch', () => {
   test('failes with invalid data', async () => {
     const { status } = await api.post('/api/batches').send(invalidData);
     expect(status).toBe(400);
+  });
+});
+
+describe('find all batches', () => {
+  test('success with all data', () => {
+    Promise.all(addBatches(50, api)).then(async () => {
+      const { body, status } = await api.get('/api/batches');
+      expect(status).toBe(200);
+      expect(body.length).toBe(50);
+    });
   });
 });
 
