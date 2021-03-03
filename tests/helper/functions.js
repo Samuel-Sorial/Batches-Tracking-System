@@ -1,7 +1,7 @@
 const { validSizes, validColors } = require('./DataSamples.json');
 
 /**
- *
+ * Calls api to create given number of batches with random data
  * @param {Number} max
  * @returns {Array<Promise>}
  */
@@ -13,7 +13,7 @@ const addBatches = (max, api) => {
     batchesPromises.push(
       api
         .post('/api/batches')
-        .send({ size, color, quantity: Math.random() * 1000 })
+        .send({ size, color, quantity: Math.floor(Math.random() * 1000) })
     );
   }
   return batchesPromises;

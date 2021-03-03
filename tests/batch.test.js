@@ -19,6 +19,7 @@ beforeAll(async () => {
   await new Sequence({ name: 'batch', last: 0 }).save();
 });
 
+// Test find all batches
 describe('find all batches', () => {
   test('success even if empty data', async () => {
     const { body, status } = await api.get('/api/batches');
@@ -33,6 +34,7 @@ describe('find all batches', () => {
   });
 });
 
+// Test creating batches
 describe('create batch', () => {
   test('success with complete data', async () => {
     const { body, status } = await api.post('/api/batches').send(completeData);
