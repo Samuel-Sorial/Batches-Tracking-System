@@ -6,6 +6,7 @@ const logger = require('./utils/logger');
 mongooseConnection
   .then(() => {
     logger.info('Connected Successfully to MongoDB');
+    require('./utils/initialize');
     app.listen(config.PORT, () =>
       logger.info('Server is running successfully on port', config.PORT)
     );

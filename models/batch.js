@@ -17,15 +17,16 @@ const batchSchema = new mongoose.Schema({
 
 /**
  * @async
+ * Atomically gets the next number
  * @returns {Number} next sequence number
  */
 const getNumber = async () => {
   const sequenceNumber = await sequence.findOneAndUpdate(
     { name: 'batch' },
-    { $inc: { number: 1 } },
+    { $inc: { last: 1 } },
     { new: true }
   );
-  return sequenceNumber.number;
+  return sequenceNumber.last;
 };
 
 batchSchema.statics.newBatch = async function (batch) {

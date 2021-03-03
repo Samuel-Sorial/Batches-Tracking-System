@@ -6,4 +6,8 @@ const Batch = require('../models/batch');
  * @param {import('express').Response} response
  * @param {import('express').NextFunction} next
  */
-module.exports.createBatch = (request, response, next) => {};
+module.exports.createBatch = async (request, response, next) => {
+  Batch.newBatch({ ...request.body })
+    .then((batch) => batch.save())
+    .then((batch) => response.status(201).send(batch));
+};
