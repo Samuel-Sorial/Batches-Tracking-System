@@ -14,6 +14,15 @@ beforeAll(async () => {
   await new Sequence({ name: 'batch', last: 0 }).save();
 });
 
+describe('find all batches', () => {
+  test('success with all data', async () => {
+    await Promise.all(addBatches(50, api));
+    const { body, status } = await api.get('/api/batches');
+    expect(status).toBe(200);
+    expect(body.length).toBe(50);
+  });
+});
+
 describe('create batch', () => {
   test('success with complete data', async () => {
     const { body, status } = await api.post('/api/batches').send(completeData);
@@ -26,16 +35,6 @@ describe('create batch', () => {
   test('failes with invalid data', async () => {
     const { status } = await api.post('/api/batches').send(invalidData);
     expect(status).toBe(400);
-  });
-});
-
-describe('find all batches', () => {
-  test('success with all data', () => {
-    Promise.all(addBatches(50, api)).then(async () => {
-      const { body, status } = await api.get('/api/batches');
-      expect(status).toBe(200);
-      expect(body.length).toBe(50);
-    });
   });
 });
 

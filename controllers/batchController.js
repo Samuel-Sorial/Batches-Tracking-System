@@ -9,7 +9,9 @@ const logger = require('../utils/logger');
 module.exports.createBatch = async (request, response, next) => {
   Batch.newBatch({ ...request.body })
     .then((batch) => batch.save())
-    .then((batch) => response.status(201).send(batch))
+    .then((batch) => {
+      response.status(201).send(batch);
+    })
     .catch(() => next(new TypeError('Invalid Data')));
 };
 
