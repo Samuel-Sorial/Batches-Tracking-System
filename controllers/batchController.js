@@ -16,7 +16,7 @@ module.exports.createBatch = async (request, response, next) => {
 };
 
 /**
- * Finds batches and group them if asked in the query
+ * Finds batches or group them if asked in the query
  * @param {import('express').Request} request
  * @param {import('express').Response} response
  * @param {import('express').NextFunction} next

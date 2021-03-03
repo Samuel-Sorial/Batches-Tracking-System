@@ -13,7 +13,7 @@ const addBatches = (max, api) => {
     batchesPromises.push(
       api
         .post('/api/batches')
-        .send({ size, color, quantity: Math.floor(Math.random() * 1000) })
+        .send({ size, color, quantity: Math.floor(Math.random() * 1000) + 1 })
     );
   }
   return batchesPromises;
