@@ -9,13 +9,10 @@ const app = express();
 
 // Connecting to MongoDB
 logger.info('Connecting to MongoDB using:', config.MONGODB_URI);
-mongoose
-  .connect(config.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => logger.info('Connected Successfully to MongoDB'))
-  .catch((error) => logger.error(error));
+const mongooseConnection = mongoose.connect(config.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 // Attaching middlewares to the application
 app.use(express.json());
@@ -26,4 +23,4 @@ app.use('/api', apiRouter);
 app.use(middleware.notFound);
 app.use(middleware.errorHandler);
 
-module.exports = app;
+module.exports = { mongooseConnection, app };
