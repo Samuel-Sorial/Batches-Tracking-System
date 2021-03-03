@@ -6,6 +6,8 @@
 
 - Adding required packages to run production
 - Adding required packages to run testing
+- Adding test script
+- Adding init script that initialzes the environment variables
 
 ## Middleware
 
