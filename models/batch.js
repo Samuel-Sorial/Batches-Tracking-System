@@ -16,6 +16,7 @@ const batchSchema = new mongoose.Schema({
 });
 
 /**
+ * @async
  * @returns {Number} next sequence number
  */
 const getNumber = async () => {
