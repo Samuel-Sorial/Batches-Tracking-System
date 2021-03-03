@@ -16,16 +16,40 @@ module.exports.createBatch = async (request, response, next) => {
 };
 
 /**
- * Finds all batches with their full attributes
+ * Finds batches and group them if asked in the query
  * @param {import('express').Request} request
  * @param {import('express').Response} response
  * @param {import('express').NextFunction} next
  */
-module.exports.findAllBatches = async (request, response, next) => {
-  Batch.find({})
-    .then((batches) => response.send(batches))
-    .catch((error) => {
-      logger.error(error);
-      next(new Error());
-    });
+module.exports.findBatches = async (request, response, next) => {
+  // Return all the data
+  if (!request.query.group) {
+    Batch.find({})
+      .then((batches) => response.send(batches))
+      .catch((error) => {
+        logger.error(error);
+        next(new Error());
+      });
+  }
+  // Group them by size and color
+  else {
+    Batch.aggregate([
+      {
+        $group: {
+          _id: { color: '$color', size: '$size' },
+          quantity: { $sum: '$quantity' },
+        },
+      },
+      {
+        $sort: {
+          quantity: 1,
+        },
+      },
+    ])
+      .then((result) => response.send(result))
+      .catch((error) => {
+        logger.error(error);
+        next(new Error());
+      });
+  }
 };
