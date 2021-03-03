@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const sequenceSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  name: { type: String, required: true, unique: true },
   last: { type: Number, required: true, min: 1 },
 });
 
