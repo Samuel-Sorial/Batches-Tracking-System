@@ -8,7 +8,7 @@ mongooseConnection
   .then(() => {
     logger.info('Connected Successfully to MongoDB');
     require('./utils/initialize');
-    app.listen(config.PORT, () =>
+    app.listen(config.PORT || 3001, () =>
       logger.info('Server is running successfully on port', config.PORT)
     );
   })
