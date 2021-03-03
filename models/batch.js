@@ -16,14 +16,19 @@ const batchSchema = new mongoose.Schema({
 });
 
 /**
- * @todo
- * @param {String} modelName
  * @returns {Number} next sequence number
  */
-const getNumber = async () => {};
+const getNumber = async () => {
+  const sequenceNumber = await sequence.findOneAndUpdate(
+    { name: 'batch' },
+    { $inc: { number: 1 } },
+    { new: true }
+  );
+  return sequenceNumber.number;
+};
 
 batchSchema.statics.newBatch = async function (batch) {
-  const nextNumber = await getNumber('batch');
+  const nextNumber = await getNumber();
   return new this({ ...batch, number: nextNumber });
 };
 
