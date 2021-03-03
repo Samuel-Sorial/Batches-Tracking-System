@@ -1,18 +1,8 @@
+/* eslint-disable func-names */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-param-reassign */
 const mongoose = require('mongoose');
-
-/**
- * Converts object id to a number
- * @param {mongoose.Types.ObjectId} id
- * @returns {Number} unique number that always will refer to same object
- */
-const convertIdToNumber = (id) => {
-  // Cut the id and only use PID, INC of this object id,
-  // for more information: https://stackoverflow.com/a/58024069/13089670
-  const number = id.toHexString().substr(14);
-  return number;
-};
+const sequence = require('./sequence');
 
 const batchSchema = new mongoose.Schema({
   size: { type: String, enum: ['S', 'M', 'L', 'XL'], required: true },
@@ -22,17 +12,19 @@ const batchSchema = new mongoose.Schema({
     required: true,
   },
   quantity: { type: Number, min: 1, index: 1 },
+  number: { type: Number, min: 1, index: 1 },
 });
 
-batchSchema.virtual('number').get(function () {
-  return convertIdToNumber(this._id);
-});
+/**
+ * @todo
+ * @param {String} modelName
+ * @returns {Number} next sequence number
+ */
+const getNumber = async () => {};
 
-batchSchema.set('toJSON', {
-  transform: (document, returnedObject) => {
-    returnedObject.number = convertIdToNumber(returnedObject._id);
-    delete returnedObject.__v;
-  },
-});
+batchSchema.statics.newBatch = async function (batch) {
+  const nextNumber = await getNumber('batch');
+  return new this({ ...batch, number: nextNumber });
+};
 
 module.exports = mongoose.model('Batch', batchSchema);
