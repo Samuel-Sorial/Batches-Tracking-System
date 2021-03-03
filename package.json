@@ -8,8 +8,7 @@
     "dev": "NODE_ENV=development nodemon index.js",
     "test": "NODE_ENV=test jest --verbose --runInBand",
     "lint": "eslint .",
-    "init": "npm install && node ./scripts/init.js",
-    "heroku-postbuild": "node ./scripts/init.js"
+    "init": "npm install && node ./scripts/init.js"
   },
   "repository": {
     "type": "git",

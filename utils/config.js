@@ -1,5 +1,8 @@
+/* eslint-disable global-require */
 // Attaching ENV variables to the process
-require('dotenv').config();
+if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
+  require('dotenv').config();
+}
 
 const { PORT } = process.env;
 
