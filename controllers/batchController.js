@@ -48,6 +48,14 @@ module.exports.findBatches = async (request, response, next) => {
           quantity: 1,
         },
       },
+      {
+        $project: {
+          _id: 0,
+          quantity: 1,
+          color: '$_id.color',
+          size: '$_id.size',
+        },
+      },
     ])
       .then((result) => response.send(result))
       .catch((error) => {
