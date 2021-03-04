@@ -15,6 +15,7 @@ const batchSchema = new mongoose.Schema({
   number: { type: Number, required: true, min: 1, index: 1 },
 });
 
+// Adding compund index to optimize the group aggregation using them
 batchSchema.index({ size: 1, color: 1 });
 
 /**
