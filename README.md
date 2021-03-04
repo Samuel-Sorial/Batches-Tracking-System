@@ -30,6 +30,8 @@
   </p>
 </p>
 
+---
+
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
@@ -52,13 +54,14 @@
   </ol>
 </details>
 
+---
+
 <!-- ABOUT THE PROJECT -->
-<br />
 <br />
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://garment-batches.herokuapp.com/api/batches)
+[![batches-sample][product-screenshot]](https://garment-batches.herokuapp.com/api/batches)
 
 A simple garment batches tracking system developed as part of a hiring process. It supports adding batches, getting all batchs, and grouping them by
 color, size.
@@ -71,7 +74,7 @@ color, size.
 - [Mongoose](https://mongoosejs.com/)
 
 <!-- GETTING STARTED -->
-<br />
+
 <br />
 
 ## Getting Started
@@ -105,9 +108,9 @@ The application is very simple, which means that initializing it won't be a big 
    ```sh
    npm start
    ```
-   <br />
-   <br />
    <!-- Testing -->
+
+---
 
 ## Testing
 
@@ -117,109 +120,110 @@ After initializing the project from the previous section, simply run:
 npm run test
 ```
 
-<br />
+---
+
 <br />
 
 <!-- DOCUMENTATION -->
 
 ## RESTful API documentation
 
-### Create Batch
+- ### Create Batch
 
-- **URL**
+  - **URL**
 
-  /api/batches
+    /api/batches
 
-- **Method**
+  - **Method**
 
-  `POST`
+    `POST`
 
-- **Content-type: `application/json`**
-- **Data Params**
+  - **Content-type: `application/json`**
+  - **Data Params**
 
-  `size`: [String] in ['S', 'M', 'L', 'XL'] _Required_
+    `size`: `String` in ['S', 'M', 'L', 'XL'] _Required_
 
-  `color`: [String] in ['red','black,'green','blue'] _Required_
+    `color`: `String` in ['red','black,'green','blue'] _Required_
 
-  `quantity`: [Number] _Required_
+    `quantity`: `Number` _Required_
 
-- **Success Response:**
+  - **Success Response:**
 
-  - Code: `201`
-  - Content: {id, size, color, quantity, number}
+    - Code: `201`
+    - Content: {id, size, color, quantity, number}
 
-- **Error Response:**
+  - **Error Response:**
 
-  - Code: `400`
-  - Message: `Invalid data`
+    - Code: `400`
+    - Message: `Invalid data`
 
-- **Sample Call:**
-  ```sh
-  curl --location --request POST 'https://garment-batches.herokuapp.com/api/batches' \ --header 'Content-Type: application/json' \ --data-raw '{
-      "size": "M",
-      "color":"blue",
-      "quantity": 152
-  }'
-  ```
-- **Sample Response:**
+  - **Sample Call:**
+    ```sh
+    curl --location --request POST 'https://garment-batches.herokuapp.com/api/batches' \ --header 'Content-Type: application/json' \ --data-raw '{
+        "size": "M",
+        "color":"blue",
+        "quantity": 152
+    }'
+    ```
+  - **Sample Response:**
 
-  ```sh
-  HTTP/1.1 201 Created
-  Server: Cowboy
-  Connection: keep-alive
-  X-Powered-By: Express
-  Access-Control-Allow-Origin: *
-  Content-Type: application/json; charset=utf-8
-  Content-Length: 87
-  Etag: W/"57-aY3Qz3N3s4X0mBI4A/kcuBCMHQs"
-  Date: Thu, 04 Mar 2021 04:44:29 GMT
-  {"size":"M","color":"blue","quantity":152,"number":288,"id":"604065ad6f50bc001561e639"}
-  ```
+    ```sh
+    HTTP/1.1 201 Created
+    Server: Cowboy
+    Connection: keep-alive
+    X-Powered-By: Express
+    Access-Control-Allow-Origin: *
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 87
+    Etag: W/"57-aY3Qz3N3s4X0mBI4A/kcuBCMHQs"
+    Date: Thu, 04 Mar 2021 04:44:29 GMT
+    {"size":"M","color":"blue","quantity":152,"number":288,"id":"604065ad6f50bc001561e639"}
+    ```
 
 ---
 
-### Get all batches
+- ### Get all batches
 
-- **URL**
+  - **URL**
 
-  /api/batches
+    /api/batches
 
-- **Method**
+  - **Method**
 
-  `GET`
+    `GET`
 
-- **URL Params:** group=[Boolean]
-- **Data Params:** None
+  - **URL Params:** group =` Boolean` _Optional_
+  - **Data Params:** None
 
-- **Success Response:**
+  - **Success Response:**
 
-  - Code: `200`
-  - Content: [{id, size, color, quantity, number}]
+    - Code: `200`
+    - Content: [{id, size, color, quantity, number}]
 
-- **Error Response:**
+  - **Error Response:**
 
-  - Code: `500`
-  - Message: `Internal Server Error`
+    - Code: `500`
+    - Message: `Internal Server Error`
 
-- **Sample Call:**
-  ```sh
-  curl --location --request GET 'https://garment-batches.herokuapp.com/api/batches'
-  ```
-- **Sample Response:**
+  - **Sample Call:**
+    ```sh
+    curl --location --request GET 'https://garment-batches.herokuapp.com/api/batches'
+    ```
+  - **Sample Response:**
 
-  ```sh
-   HTTP/1.1 200 OK
-   Server: Cowboy
-   Connection: keep-alive
-   X-Powered-By: Express
-   Access-Control-Allow-Origin: *
-   Content-Type: application/json; charset=utf-8
-   Content-Length: 25228
-   Etag: W/"628c-XsvaPiL463eJjqicsz9iBEN7YPg"
-   Date: Thu, 04 Mar 2021 04:48:21 GMT
+    ```sh
+    HTTP/1.1 200 OK
+    Server: Cowboy
+    Connection: keep-alive
+    X-Powered-By: Express
+    Access-Control-Allow-Origin: *
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 25228
+    Etag: W/"628c-XsvaPiL463eJjqicsz9iBEN7YPg"
+    Date: Thu, 04 Mar 2021 04:48:21 GMT
 
-  [{"size":"L","color":"red","quantity":50,"number":1,"id":"60402615bf859b00159b381b"},{"size":"XL","color":"red","quantity":40,"number":3,"id":"6040262dbf859b00159b381d"},{"size":"S","color":"black","quantity":15,"number":4,"id":"60402719bf859b00159b381e"},{"size":"M","color":"blue","quantity":152,"number":5,"id":"60402722bf859b00159b381f"}]
-  ```
+    [{"size":"L","color":"red","quantity":50,"number":1,"id":"60402615bf859b00159b381b"},{"size":"XL","color":"red","quantity":40,"number":3,"id":"6040262dbf859b00159b381d"},{"size":"S","color":"black","quantity":15,"number":4,"id":"60402719bf859b00159b381e"},{"size":"M","color":"blue","quantity":152,"number":5,"id":"60402722bf859b00159b381f"}]
+    ```
 
  <!-- MARKDOWN LINKS & IMAGES -->
 
