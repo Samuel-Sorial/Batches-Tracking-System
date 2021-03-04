@@ -95,7 +95,13 @@ The application is very simple, which means that initializing it won't be a big 
    git clone https://github.com/Samuel-Sorial/Batches-Tracking-System.git
    ```
 
-2. Initialize the application using port number and database name
+2. Go to the clone directory
+
+   ```sh
+    cd Batches-Tracking-System/
+   ```
+
+3. Initialize the application using port number and database name
 
    ```sh
    npm run init port=YOUR_PORT_NUMBER db=YOUR_DB_NAME
@@ -104,7 +110,7 @@ The application is very simple, which means that initializing it won't be a big 
    Port number and db are optional, if you don't pass it the system will use the
    default values which are port: 3030, db: batches
 
-3. Run the application
+4. Run the application
    ```sh
    npm start
    ```
