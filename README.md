@@ -98,7 +98,7 @@ The application is very simple, which means that initializing it won't be a big 
 2. Initialize the application using port number and database name
 
    ```sh
-   npm init port=YOUR_PORT_NUMBER db=YOUR_DB_NAME
+   npm run init port=YOUR_PORT_NUMBER db=YOUR_DB_NAME
    ```
 
    Port number and db are optional, if you don't pass it the system will use the
