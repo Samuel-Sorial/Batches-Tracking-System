@@ -5,8 +5,7 @@ let port = '3030';
 process.argv.forEach((val) => {
   if (val.toLowerCase().indexOf('port') !== -1) {
     port = val.substr(5);
-  }
-  if (val.toLowerCase().indexOf('db') !== -1) {
+  } else if (val.toLowerCase().indexOf('db') !== -1) {
     db = val.substr(3);
   }
 });
