@@ -58,8 +58,6 @@
 
 ## About The Project
 
----
-
 [![Product Name Screen Shot][product-screenshot]](https://garment-batches.herokuapp.com/api/batches)
 
 A simple garment batches tracking system developed as part of a hiring process. It supports adding batches, getting all batchs, and grouping them by
@@ -77,8 +75,6 @@ color, size.
 <br />
 
 ## Getting Started
-
----
 
 The application is very simple, which means that initializing it won't be a big deal.
 
@@ -115,8 +111,6 @@ The application is very simple, which means that initializing it won't be a big 
 
 ## Testing
 
----
-
 After initializing the project from the previous section, simply run:
 
 ```sh
@@ -129,8 +123,6 @@ npm run test
 <!-- DOCUMENTATION -->
 
 ## RESTful API documentation
-
----
 
 ### Create Batch
 
