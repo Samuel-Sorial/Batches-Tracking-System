@@ -47,13 +47,18 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#contributing">REST API documentation</a></li>
+    <li><a href="#testing">Testing</a></li>
+    <li><a href="#restful-api-documentation">RESTful API documentation</a></li>
   </ol>
 </details>
 
 <!-- ABOUT THE PROJECT -->
+<br />
+<br />
 
 ## About The Project
+
+---
 
 [![Product Name Screen Shot][product-screenshot]](https://garment-batches.herokuapp.com/api/batches)
 
@@ -68,8 +73,12 @@ color, size.
 - [Mongoose](https://mongoosejs.com/)
 
 <!-- GETTING STARTED -->
+<br />
+<br />
 
 ## Getting Started
+
+---
 
 The application is very simple, which means that initializing it won't be a big deal.
 
@@ -100,28 +109,126 @@ The application is very simple, which means that initializing it won't be a big 
    ```sh
    npm start
    ```
+   <br />
+   <br />
+   <!-- Testing -->
 
-<!-- USAGE EXAMPLES -->
+## Testing
 
-## Usage
+---
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+After initializing the project from the previous section, simply run:
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+```sh
+npm run test
+```
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+<br />
+<br />
 
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+<!-- DOCUMENTATION -->
+
+## RESTful API documentation
+
+---
+
+### Create Batch
+
+- **URL**
+
+  /api/batches
+
+- **Method**
+
+  `POST`
+
+- **Content-type: `application/json`**
+- **Data Params**
+
+  `size`: [String] in ['S', 'M', 'L', 'XL'] _Required_
+
+  `color`: [String] in ['red','black,'green','blue'] _Required_
+
+  `quantity`: [Number] _Required_
+
+- **Success Response:**
+
+  - Code: `201`
+  - Content: {id, size, color, quantity, number}
+
+- **Error Response:**
+
+  - Code: `400`
+  - Message: `Invalid data`
+
+- **Sample Call:**
+  ```sh
+  curl --location --request POST 'https://garment-batches.herokuapp.com/api/batches' \ --header 'Content-Type: application/json' \ --data-raw '{
+      "size": "M",
+      "color":"blue",
+      "quantity": 152
+  }'
+  ```
+- **Sample Response:**
+
+  ```sh
+  HTTP/1.1 201 Created
+  Server: Cowboy
+  Connection: keep-alive
+  X-Powered-By: Express
+  Access-Control-Allow-Origin: *
+  Content-Type: application/json; charset=utf-8
+  Content-Length: 87
+  Etag: W/"57-aY3Qz3N3s4X0mBI4A/kcuBCMHQs"
+  Date: Thu, 04 Mar 2021 04:44:29 GMT
+  {"size":"M","color":"blue","quantity":152,"number":288,"id":"604065ad6f50bc001561e639"}
+  ```
+
+---
+
+### Get all batches
+
+- **URL**
+
+  /api/batches
+
+- **Method**
+
+  `GET`
+
+- **URL Params:** group=[Boolean]
+- **Data Params:** None
+
+- **Success Response:**
+
+  - Code: `200`
+  - Content: [{id, size, color, quantity, number}]
+
+- **Error Response:**
+
+  - Code: `500`
+  - Message: `Internal Server Error`
+
+- **Sample Call:**
+  ```sh
+  curl --location --request GET 'https://garment-batches.herokuapp.com/api/batches'
+  ```
+- **Sample Response:**
+
+  ```sh
+   HTTP/1.1 200 OK
+   Server: Cowboy
+   Connection: keep-alive
+   X-Powered-By: Express
+   Access-Control-Allow-Origin: *
+   Content-Type: application/json; charset=utf-8
+   Content-Length: 25228
+   Etag: W/"628c-XsvaPiL463eJjqicsz9iBEN7YPg"
+   Date: Thu, 04 Mar 2021 04:48:21 GMT
+
+  [{"size":"L","color":"red","quantity":50,"number":1,"id":"60402615bf859b00159b381b"},{"size":"XL","color":"red","quantity":40,"number":3,"id":"6040262dbf859b00159b381d"},{"size":"S","color":"black","quantity":15,"number":4,"id":"60402719bf859b00159b381e"},{"size":"M","color":"blue","quantity":152,"number":5,"id":"60402722bf859b00159b381f"}]
+  ```
+
+ <!-- MARKDOWN LINKS & IMAGES -->
+
 [product-screenshot]: images/getbatches.png
