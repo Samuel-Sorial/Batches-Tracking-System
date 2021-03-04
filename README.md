@@ -108,7 +108,7 @@ The application is very simple, which means that initializing it won't be a big 
    ```
 
    Port number and db are optional, if you don't pass it the system will use the
-   default values which are port: 3030, db: batches
+   default values which are port: 3030, db: batches. You can change these values later from .env file created in your root of the repository
 
 4. Run the application
    ```sh
