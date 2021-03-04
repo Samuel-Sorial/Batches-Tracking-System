@@ -25,7 +25,7 @@ module.exports.createBatch = async (request, response, next) => {
  * @param {express.NextFunction} next
  */
 module.exports.findBatches = async (request, response, next) => {
-  // Return all the data
+  // Return all the data without grouping
   if (!request.query.group) {
     Batch.find({})
       .then((batches) => response.send(batches))
